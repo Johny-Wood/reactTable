@@ -1,18 +1,19 @@
-import clsx from "clsx";
 import React from "react";
+import "./index.scss";
 
 interface IInput {
   onChange: (value: string) => void;
   value: string;
-  cl?: string;
+  placeholder: string;
 }
 
-const Input: React.FC<IInput> = ({ onChange, value, cl }) => {
+const Input: React.FC<IInput> = ({ onChange, value, placeholder }) => {
   return (
     <input
-      className={clsx("input", cl && cl)}
+      className="input"
       onChange={(e) => onChange(e.target.value)}
       value={value}
+      placeholder={placeholder}
     />
   );
 };

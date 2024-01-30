@@ -1,8 +1,10 @@
 import React from "react";
+import "./index.scss";
+
 import { TableChildrenType } from "../Table";
 
 const TableRow: React.FC<TableChildrenType> = ({ children }) => {
-  return <tr>{children}</tr>;
+  return <tr className="table-row">{children}</tr>;
 };
 
 export default TableRow;

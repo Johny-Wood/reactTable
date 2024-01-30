@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./index.scss";
+
 export type TableChildrenType = {
   children: React.ReactNode;
 };

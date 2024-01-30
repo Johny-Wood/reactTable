@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "./index.scss";
+
 import { IUser } from "../../App";
 import { Input } from "../../reusable/Input";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -10,19 +12,17 @@ interface IUsersFilter {
 
 const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
   const [fName, setFName] = useState("");
+  const [fUsers, setFUsers] = useState<IUser[]>([]);
   const debouncedFName = useDebounce(fName);
 
-  console.log(fName);
   useEffect(() => {
     if (users) {
       if (debouncedFName.length > 0) {
-        setFilteredUsers(
-          users.filter((user) =>
-            user.name.first
-              .toLowerCase()
-              .includes(debouncedFName.toLowerCase()),
-          ),
+        const f = users.filter((user) =>
+          user.name.first.toLowerCase().includes(debouncedFName.toLowerCase()),
         );
+        setFilteredUsers(f);
+        setFUsers(f);
       } else {
         setFilteredUsers(users);
       }
@@ -31,7 +31,16 @@ const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
 
   return (
     <div className="users-filter">
-      <Input onChange={(value) => setFName(value)} value={fName} />
+      <div className="users-filter__input">
+        <Input
+          onChange={(value) => setFName(value)}
+          value={fName}
+          placeholder={"Mike"}
+        />
+        {debouncedFName && fUsers.length == 0 && (
+          <label className="users-filter__error">No users found</label>
+        )}
+      </div>
     </div>
   );
 };

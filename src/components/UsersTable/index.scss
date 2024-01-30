@@ -1,0 +1,97 @@
+.users-table {
+  position: relative;
+
+  @media screen and (max-width: 700px) {
+    max-height: 100%;
+    overflow-y: hidden;
+  }
+
+  & .table .table-head .table-row .table-cell {
+    @media screen and (max-width: 700px) {
+      &:first-child {
+        order: 1;
+      }
+
+      &:nth-child(2) {
+        order: 0;
+      }
+
+      &:nth-child(3) {
+        order: 2;
+      }
+
+      &:nth-child(4) {
+        order: 3;
+      }
+
+      &:nth-child(5) {
+        order: 4;
+      }
+
+      &:nth-child(6) {
+        order: 5;
+      }
+    }
+  }
+
+  & .table .table-body .table-row .table-cell {
+    & .user-avatar {
+      cursor: pointer;
+
+      &__image {
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      &__tooltip {
+        position: absolute;
+        top: 0px;
+        right: -15px;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      &:first-child {
+        order: 1;
+      }
+
+      &:nth-child(2) {
+        order: 0;
+      }
+
+      &:nth-child(3) {
+        order: 2;
+      }
+
+      &:nth-child(4) {
+        order: 3;
+      }
+
+      &:nth-child(5) {
+        order: 4;
+      }
+
+      &:nth-child(6) {
+        order: 5;
+      }
+    }
+  }
+
+  & .user-avatar-tooltip {
+    position: absolute;
+    display: flex;
+    padding: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+
+    &__pointer {
+      position: absolute;
+      bottom: 0;
+      left: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: lightgray;
+      clip-path: polygon(0 45%, 100% 100%, 100% 0);
+    }
+  }
+}

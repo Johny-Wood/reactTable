@@ -7,12 +7,10 @@ import UsersFilter from "./components/UsersFilter";
 
 export interface IUser {
   name: {
-    // title: string;
     first: string;
     last: string;
   };
   picture: {
-    // large: string,
     medium: string;
     thumbnail: string;
   };
@@ -52,7 +50,7 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className="page">
         <UsersFilter
           users={users}
           setFilteredUsers={(value) => setFilteredUsers(value)}
