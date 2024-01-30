@@ -5,8 +5,7 @@ export type TableChildrenType = {
 };
 
 interface ITable extends TableChildrenType {
-  // add typed css properties support
-  // cl: {}
+  //   // cl: {}
 }
 
 const Table: React.FC<ITable> = ({ children }) => {

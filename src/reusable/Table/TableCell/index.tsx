@@ -1,5 +1,5 @@
 import React from "react";
-import { TableChildrenType } from "..";
+import { TableChildrenType } from "../Table";
 
 const TableCell: React.FC<TableChildrenType> = ({ children }) => {
   return <td>{children}</td>;
