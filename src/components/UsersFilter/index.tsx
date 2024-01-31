@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 
-import { IUser } from "../../App";
+import { IUser } from "../../api/handlers/users";
 import { Input } from "../../reusable/Input";
 import { useDebounce } from "../../hooks/useDebounce";
 

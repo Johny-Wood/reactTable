@@ -10,7 +10,7 @@ import {
   TableHeadCell,
 } from "../../reusable/Table";
 
-import { IUser } from "../../App";
+import { IUser } from "../../api/handlers/users";
 import LoadingSpinner from "../../reusable/LoadingSpinner";
 
 const columns = [

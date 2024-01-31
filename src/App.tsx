@@ -2,28 +2,8 @@ import "normalize.css";
 import "./App.css";
 import { useEffect, useState } from "react";
 import UsersTable from "./components/UsersTable";
-import { getUsers } from "./api/handlers/users";
+import { IUser, getUsers } from "./api/handlers/users";
 import UsersFilter from "./components/UsersFilter";
-
-export interface IUser {
-  name: {
-    first: string;
-    last: string;
-  };
-  picture: {
-    medium: string;
-    thumbnail: string;
-  };
-  location: {
-    state: string;
-    city: string;
-  };
-  email: string;
-  phone: string;
-  registered: {
-    date: string;
-  };
-}
 
 const App = () => {
   const [users, setUsers] = useState<IUser[]>([]);

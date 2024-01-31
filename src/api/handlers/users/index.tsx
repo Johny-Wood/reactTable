@@ -1,6 +1,25 @@
 import axios from "axios";
 import api from "../..";
-import { IUser } from "../../../App";
+
+export interface IUser {
+  name: {
+    first: string;
+    last: string;
+  };
+  picture: {
+    medium: string;
+    thumbnail: string;
+  };
+  location: {
+    state: string;
+    city: string;
+  };
+  email: string;
+  phone: string;
+  registered: {
+    date: string;
+  };
+}
 
 type getUsersParams = {
   include: string;
