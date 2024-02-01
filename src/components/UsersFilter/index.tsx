@@ -3,7 +3,7 @@ import "./index.scss";
 
 import { IUser } from "../../api/handlers/users";
 import { Input } from "../../reusable/Input";
-import { useDebounce } from "../../hooks/useDebounce";
+import { debounce } from "../../utils/debounce";
 
 interface IUsersFilter {
   users: IUser[];
@@ -12,8 +12,9 @@ interface IUsersFilter {
 
 const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
   const [fName, setFName] = useState("");
+  const [debouncedFName, setDebouncedFName] = useState("");
+
   const [fUsers, setFUsers] = useState<IUser[]>([]);
-  const debouncedFName = useDebounce(fName);
 
   useEffect(() => {
     if (users) {
@@ -25,19 +26,21 @@ const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
         setFUsers(f);
       } else {
         setFilteredUsers(users);
+        setFUsers([]);
       }
     }
   }, [debouncedFName]);
 
+  const handleNameFilter = (value: string) => {
+    setFName(value);
+    debounce((v) => setDebouncedFName(v), 500)(value);
+  };
+
   return (
     <div className="users-filter">
       <div className="users-filter__input">
-        <Input
-          onChange={(value) => setFName(value)}
-          value={fName}
-          placeholder={"Mike"}
-        />
-        {debouncedFName && fUsers.length == 0 && (
+        <Input onChange={handleNameFilter} value={fName} placeholder={"Mike"} />
+        {fName && fUsers.length == 0 && (
           <label className="users-filter__error">No users found</label>
         )}
       </div>
