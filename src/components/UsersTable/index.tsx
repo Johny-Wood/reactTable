@@ -68,14 +68,14 @@ const UsersTable: React.FC<{
             filteredUsers.map((row, rowIndex) => {
               const registeredDate = new Date(row.registered.date);
               const registeredYear = registeredDate.getFullYear().toString();
-              const registeredMonth = registeredDate.getMonth().toString();
+              const registeredMonth = +registeredDate.getMonth().toString() + 1;
               const registeredDay = registeredDate.getDate().toString();
 
               // Usually it formats easier and more readable with libs like dayjs
               const formatedRegisteredDate = `${
                 registeredDay.length == 1 ? "0" : ""
               }${registeredDay}.${
-                registeredMonth.length == 1 ? "0" : ""
+                registeredMonth.toString().length == 1 ? "0" : ""
               }${registeredMonth}.${registeredYear}`;
 
               return (
