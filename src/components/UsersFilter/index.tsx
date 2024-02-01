@@ -24,9 +24,10 @@ const UsersFilter: React.FC<IUsersFilter> = ({
   useEffect(() => {
     if (users) {
       if (debouncedFName.length > 0) {
-        const f = users.filter((user) =>
-          user.name.first.toLowerCase().includes(debouncedFName.toLowerCase()),
-        );
+        const f = users.filter((user) => {
+          const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
+          return fullName.includes(debouncedFName.toLowerCase());
+        });
 
         if (f.length == 0) {
           setFilteredUsersNotFound(true);
