@@ -8,13 +8,18 @@ import { debounce } from "../../utils/debounce";
 interface IUsersFilter {
   users: IUser[];
   setFilteredUsers: (value: IUser[]) => void;
+  setFilteredUsersNotFound: (value: boolean) => void;
+  filteredUsersNotFound: boolean;
 }
 
-const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
+const UsersFilter: React.FC<IUsersFilter> = ({
+  users,
+  setFilteredUsers,
+  setFilteredUsersNotFound,
+  filteredUsersNotFound,
+}) => {
   const [fName, setFName] = useState("");
   const [debouncedFName, setDebouncedFName] = useState("");
-
-  const [fUsers, setFUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
     if (users) {
@@ -22,11 +27,16 @@ const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
         const f = users.filter((user) =>
           user.name.first.toLowerCase().includes(debouncedFName.toLowerCase()),
         );
+
+        if (f.length == 0) {
+          setFilteredUsersNotFound(true);
+        } else {
+          setFilteredUsersNotFound(false);
+        }
+
         setFilteredUsers(f);
-        setFUsers(f);
       } else {
         setFilteredUsers(users);
-        setFUsers([]);
       }
     }
   }, [debouncedFName]);
@@ -39,14 +49,14 @@ const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
   const handleResetNameFilter = () => {
     setFName("");
     setDebouncedFName("");
-    setFUsers(users);
+    setFilteredUsers(users);
   };
 
   return (
     <div className="users-filter">
       <div className="users-filter__input">
         <Input onChange={handleNameFilter} value={fName} placeholder={"Mike"} />
-        {debouncedFName && fUsers.length == 0 && (
+        {debouncedFName && filteredUsersNotFound && (
           <label className="users-filter__error">No users found</label>
         )}
       </div>

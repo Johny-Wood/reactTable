@@ -8,6 +8,7 @@ import UsersFilter from "./components/UsersFilter";
 const App = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
+  const [filteredUsersNotFound, setFilteredUsersNotFound] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -34,8 +35,13 @@ const App = () => {
         <UsersFilter
           users={users}
           setFilteredUsers={(value) => setFilteredUsers(value)}
+          setFilteredUsersNotFound={(value) => setFilteredUsersNotFound(value)}
+          filteredUsersNotFound={filteredUsersNotFound}
         />
-        <UsersTable filteredUsers={filteredUsers} />
+        <UsersTable
+          filteredUsers={filteredUsers}
+          filteredUsersNotFound={filteredUsersNotFound}
+        />
       </div>
     </>
   );

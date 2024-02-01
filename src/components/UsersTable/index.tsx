@@ -22,9 +22,10 @@ const columns = [
   "registered date",
 ];
 
-const UsersTable: React.FC<{ filteredUsers: IUser[] }> = ({
-  filteredUsers,
-}) => {
+const UsersTable: React.FC<{
+  filteredUsers: IUser[];
+  filteredUsersNotFound: boolean;
+}> = ({ filteredUsers, filteredUsersNotFound }) => {
   const [hoveredAvatarRowIndex, setHoveredAvatarRowIndex] = useState<
     number | null
   >(null);
@@ -92,7 +93,9 @@ const UsersTable: React.FC<{ filteredUsers: IUser[] }> = ({
         </TableBody>
       </Table>
 
-      {filteredUsers.length == 0 && <LoadingSpinner />}
+      {filteredUsers.length == 0 && !filteredUsersNotFound && (
+        <LoadingSpinner />
+      )}
       {hoveredAvatarRowIndex !== null && (
         <div
           className="user-avatar-tooltip"
