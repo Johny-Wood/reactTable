@@ -84,6 +84,11 @@
     background-color: lightgray;
     border-radius: 5px;
 
+    &__image {
+      min-width: 72px;
+      min-height: 72px;
+    }
+
     &__pointer {
       position: absolute;
       bottom: 0;

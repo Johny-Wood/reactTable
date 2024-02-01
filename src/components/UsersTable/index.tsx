@@ -118,7 +118,7 @@ const UsersTable: React.FC<{
         >
           <img
             src={filteredUsers[hoveredAvatarRowIndex].picture.medium}
-            className="user-avatar__image--medium"
+            className="user-avatar-tooltip__image"
           />
 
           <div className="user-avatar-tooltip__pointer"></div>
