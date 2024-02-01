@@ -1,8 +1,19 @@
 .users-filter {
+  display: flex;
+  align-items: flex-start;
   margin: 20px 10px;
 
   &__input {
     max-width: 600px;
     width: 100%;
+    margin-right: 10px;
+  }
+
+  &__reset-btn {
+    padding: 10px;
+    background-color: #c2c2c2;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
   }
 }

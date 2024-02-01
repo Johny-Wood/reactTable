@@ -36,14 +36,26 @@ const UsersFilter: React.FC<IUsersFilter> = ({ users, setFilteredUsers }) => {
     debounce((v) => setDebouncedFName(v), 500)(value);
   };
 
+  const handleResetNameFilter = () => {
+    setFName("");
+    setDebouncedFName("");
+    setFUsers(users);
+  };
+
   return (
     <div className="users-filter">
       <div className="users-filter__input">
         <Input onChange={handleNameFilter} value={fName} placeholder={"Mike"} />
-        {fName && fUsers.length == 0 && (
+        {debouncedFName && fUsers.length == 0 && (
           <label className="users-filter__error">No users found</label>
         )}
       </div>
+      <button
+        className="users-filter__reset-btn"
+        onClick={handleResetNameFilter}
+      >
+        Reset name filter
+      </button>
     </div>
   );
 };
