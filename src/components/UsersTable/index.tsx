@@ -66,6 +66,13 @@ const UsersTable: React.FC<{
         <TableBody>
           {filteredUsers.length > 0 &&
             filteredUsers.map((row, rowIndex) => {
+              const registeredDate = new Date(row.registered.date);
+              const registeredYear = registeredDate.getFullYear();
+              const registeredMonth = registeredDate.getMonth();
+              const registeredDay = registeredDate.getDate();
+
+              const formatedRegisteredDate = `${registeredYear}.${registeredMonth}.${registeredDay}`;
+
               return (
                 <TableRow key={rowIndex}>
                   <TableCell>{row.name.first + " " + row.name.last}</TableCell>
@@ -86,7 +93,7 @@ const UsersTable: React.FC<{
                   </TableCell>
                   <TableCell>{row.email}</TableCell>
                   <TableCell>{row.phone}</TableCell>
-                  <TableCell>{row.registered.date}</TableCell>
+                  <TableCell>{formatedRegisteredDate}</TableCell>
                 </TableRow>
               );
             })}
