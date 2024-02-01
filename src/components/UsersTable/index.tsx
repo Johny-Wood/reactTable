@@ -42,7 +42,7 @@ const UsersTable: React.FC<{
 
     if (table) {
       const tooltipLeft = cell.right + 10 + window.pageXOffset;
-      const tooltipTop = cell.top - 140 + window.pageYOffset;
+      const tooltipTop = cell.top - 175 + window.pageYOffset;
       setAvatarTooltipPosition({ left: tooltipLeft, top: tooltipTop });
       setHoveredAvatarRowIndex(rowIndex);
     }
